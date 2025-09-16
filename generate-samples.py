@@ -54,11 +54,11 @@ def save_wav_file(filename, sample_rate, data):
 def get_default_output_dir():
     """
     Vrátí defaultní výstupní adresář podle OS.
-    - Windows: C:\\Soundbank\\IthacaPlayer\\instrument\\
-    - Jiné (Linux/Mac): ~/Soundbank/IthacaPlayer/instrument/
+    - Windows:      C:/SoundBanks/IthacaPlayer/instrument
+    - Linux/Mac:    ~/Soundbank/IthacaPlayer/instrument/
     """
     if platform.system() == 'Windows':
-        return r'C:\\Soundbank\\\IthacaPlayer\\\instrument'
+        return r'C:\\SoundBanks\\IthacaPlayer\\instrument'
     else:
         return os.path.expanduser('~/Soundbank/IthacaPlayer/instrument')
 
