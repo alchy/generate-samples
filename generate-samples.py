@@ -65,7 +65,7 @@ def get_default_output_dir():
 def main():
     """
     Hlavní funkce programu.
-    Parsuje argumenty, vytvoří adresář a generuje všechny soubory.
+    Parsuje argumenty, vytvoří adresář a generuje WAV soubory pro MIDI noty 21-108.
     """
     parser = argparse.ArgumentParser(description='Generuje WAV soubory s sine vlnami pro MIDI noty.')
     parser.add_argument('--output-dir', type=str, help='Výstupní adresář pro soubory.')
@@ -77,15 +77,16 @@ def main():
     sample_rates = [44100, 48000]  # Hz
     rate_tags = {44100: '44', 48000: '48'}  # fZZ
     duration = 5.0  # Sekundy
-    db_levels = np.linspace(-6, -30, 8)  # Lineární kroky v dB, pak převod na amp
+    db_levels = np.linspace(-30, -6, 8)  # Od nejslabší (-30 dB) po nejhlasitější (-6 dB)
 
-    for midi_note in range(128):  # MIDI noty 0-127
+    for midi_note in range(21, 109):  # MIDI noty 21-108 (A0 až C8)
         freq = midi_to_freq(midi_note)
         note_str = f'm{midi_note:03d}'  # mXXX
 
         for vel in range(8):  # Velocity 0-7
             db = db_levels[vel]
             amp = db_to_amp(db)
+            print(f'Generuji: Nota {note_str}, Velocity {vel}, Hlasitost {db:.1f} dB, Frekvence {freq:.2f} Hz')
 
             for sample_rate in sample_rates:
                 data = generate_sine_wave(sample_rate, duration, freq, amp)
