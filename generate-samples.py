@@ -55,7 +55,7 @@ def get_default_output_dir():
     """
     Vrátí defaultní výstupní adresář podle OS.
     - Windows:      C:/SoundBanks/IthacaPlayer/instrument
-    - Linux/Mac:    ~/Soundbank/IthacaPlayer/instrument/
+    - Linux/Mac:     ~/Soundbanks/IthacaPlayer/instrument/
     """
     if platform.system() == 'Windows':
         return r'C:\\SoundBanks\\IthacaPlayer\\instrument'
